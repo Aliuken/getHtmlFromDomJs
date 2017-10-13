@@ -4,6 +4,7 @@ Javascript file to get HTML code from a web page by using its DOM.
 The file getHtmlFromDomJs.docx explains in Spanish how to use this project.
 
 I have written this project as the following answer in StackOverflow:
+
 "I have created a project called getHtmlFromDomJs on GitHub to get the HTML code of a web page (until a given depth) from its DOM using javascript."
 
 This answer was deleted however from the following questions:
