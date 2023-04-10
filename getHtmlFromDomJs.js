@@ -7,21 +7,21 @@ function replaceAll(string, find, replace) {
 }
 
 function getHTMLFromDOMNodeList(nodelist, depth, tabString, tabNumber) {
-  var output = "";
-  var tab = '';
-  for (var i = 0; i < tabNumber; i++) {
+  let output = "";
+  let tab = '';
+  for (let i = 0; i < tabNumber; i++) {
     tab += tabString;
   }
-  var newlineTab = "\r\n" + tab;
+  let newlineTab = "\r\n" + tab;
 
-  for (var i = 0; i < nodelist.length; i++) {
-    var childsString = "";
-    var nodeName = nodelist[i].nodeName.toLowerCase();
+  for (let i = 0; i < nodelist.length; i++) {
+    let childsString = "";
+    let nodeName = nodelist[i].nodeName.toLowerCase();
     if(depth > 0 && (nodeName === 'frame' || nodeName === 'iframe' || nodelist[i].hasChildNodes())) {
-      var childs;
+      let childs;
       if(nodeName === 'frame' || nodeName === 'iframe') {
         try {
-          var frameDocument = (nodelist[i].contentDocument || nodelist[i].contentWindow.document);
+          let frameDocument = (nodelist[i].contentDocument || nodelist[i].contentWindow.document);
           childs = [ frameDocument.documentElement ];
         } catch(err) {
           childsString = newlineTab + tabString + err;
@@ -35,9 +35,9 @@ function getHTMLFromDOMNodeList(nodelist, depth, tabString, tabNumber) {
     };
     if(nodelist[i].nodeType === 1) {
       output += newlineTab + "<" + nodeName;
-      var attrs = nodelist[i].attributes;
+      let attrs = nodelist[i].attributes;
       if(attrs != null) {
-        for (var j = 0; j < attrs.length; j++) {
+        for (let j = 0; j < attrs.length; j++) {
           output += " " + attrs[j].name + "=\"" + attrs[j].value + "\"";
         }
       }
@@ -48,9 +48,9 @@ function getHTMLFromDOMNodeList(nodelist, depth, tabString, tabNumber) {
       if(nodelist[i].nodeValue === null) {
         output += newlineTab + nodelist[i].nodeValue;
       } else {
-        var nodeValue = trim(nodelist[i].nodeValue);
+        let nodeValue = trim(nodelist[i].nodeValue);
         if(nodeValue !== "") {
-          var auxNodeValue = replaceAll(nodeValue, '\n','\n' + tab);
+          let auxNodeValue = replaceAll(nodeValue, '\n','\n' + tab);
           output += (nodelist[i].nodeType === 8 ? (newlineTab + "<!-- " + auxNodeValue + " -->") : (auxNodeValue));	
         }
       }
