@@ -61,7 +61,9 @@ function getHTMLFromDOMNodeList(nodelist, depth, tabString, tabNumber) {
 }
 
 function getHTMLFromDOM(depth, tabString) {
-  return '<!DOCTYPE html><html><body><textarea rows="40" cols="150">' + replaceAll(getHTMLFromDOMNodeList([document.documentElement], depth, tabString, 0), "</textarea>", "&lt;/textarea>") + '</textarea></body></html>';
+  let htmlFromDOMNodeList = getHTMLFromDOMNodeList([document.documentElement], depth, tabString, 0);
+  htmlFromDOMNodeList = replaceAll(htmlFromDOMNodeList, "</textarea>", "&lt;/textarea>");
+  return '<!DOCTYPE html><html><body><textarea rows="40" cols="150">' + htmlFromDOMNodeList + '</textarea></body></html>';
 }
 
 var htmlFromDOM = getHTMLFromDOM(50, "  ");
